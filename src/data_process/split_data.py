@@ -6,6 +6,7 @@ import networkx as nx
 from mpmath import *
 import random
 import pdb
+from tqdm import tqdm
 mp.dps = 25; mp.pretty = True
 
 class Dataset():
@@ -35,7 +36,7 @@ class Dataset():
         self.core_subgraph = self._get_holdout_subgraph(train_node_ids)
         self.pseudo_leaf_node = max(full_graph.nodes) + 1
         self.definitions[self.pseudo_leaf_node] = {"label":" ","summary":" "}
-        for node in list(self.core_subgraph.nodes()):
+        for node in tqdm(list(self.core_subgraph.nodes())):
             self.core_subgraph.add_edge(node, self.pseudo_leaf_node)
         for node in list(self.full_graph.nodes()):
             self.full_graph.add_edge(node, self.pseudo_leaf_node)
