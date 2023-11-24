@@ -51,6 +51,7 @@ class Dataset():
         logging.info(random_node)
         # random_node_attributes = self.full_graph.get_node_attributes(random_node)
         # logging.info(random_node_attributes)
+        logging.info(list(self.full_graph.nodes(data=True))[200])
         logging.info(len(list(self.full_graph.nodes())))
         
         self.train_node_list = train_node_ids
