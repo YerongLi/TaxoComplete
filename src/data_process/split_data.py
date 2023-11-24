@@ -14,6 +14,7 @@ class Dataset():
     def __init__(self, graph_dataset,sampling_method,neg_number,seed):
         helpers.set_seed(seed)
         full_graph = graph_dataset.taxonomy
+        logging.info(type(graph_dataset.taxonomy))
         train_node_ids = graph_dataset.train_node_ids
         roots = graph_dataset.root
         if len(roots) > 1:
