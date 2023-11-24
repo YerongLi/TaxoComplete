@@ -87,7 +87,7 @@ logging.info('core_graph')
 logging.info(type(core_graph))
 logging.info(core_graph)
 for i in range(300):
-    if core_graph.has_node(i)
+    if core_graph.has_node(i):
     logging.info(find_paths_of_length_2(core_graph,i))
 # for edge in core_graph.edges():
 #     source, target = edge
