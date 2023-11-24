@@ -50,7 +50,7 @@ class Dataset():
         random_node = random.choice(list(self.full_graph.nodes()))
         logging.info(random_node)
         logging.info(type(random_node))
-        logging.info(len(self.full_graph.nodes()))
+        logging.info(len(list(self.full_graph.nodes())))
         
         self.train_node_list = train_node_ids
         self.corpus, self.corpusId2nodeId = self._construct_queries(train_node_ids)
