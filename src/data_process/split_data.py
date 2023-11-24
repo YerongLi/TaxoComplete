@@ -49,7 +49,8 @@ class Dataset():
 
         random_node = random.choice(list(self.full_graph.nodes()))
         logging.info(random_node)
-        logging.info(type(random_node))
+        random_node_attributes = self.full_graph.get_node_attributes(random_node)
+        logging.info(random_node_attributes)
         logging.info(len(list(self.full_graph.nodes())))
         
         self.train_node_list = train_node_ids
