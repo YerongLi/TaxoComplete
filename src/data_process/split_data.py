@@ -15,9 +15,6 @@ class Dataset():
         helpers.set_seed(seed)
         full_graph = graph_dataset.taxonomy
         logging.info(type(graph_dataset.taxonomy))
-        random_node = random.choice(full_graph.nodes())
-        # logging.info(random_node)
-        logging.info(type(random_node))
         train_node_ids = graph_dataset.train_node_ids
         roots = graph_dataset.root
         if len(roots) > 1:
@@ -51,7 +48,7 @@ class Dataset():
         # self.idx_corpus_id, self.corpus = self._construct_corpus(leaf_nodes_training)
 
         random_node = random.choice(full_graph.nodes())
-        # logging.info(random_node)
+        logging.info(random_node)
         logging.info(type(random_node))
         
         self.train_node_list = train_node_ids
