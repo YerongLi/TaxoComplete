@@ -40,6 +40,8 @@ class Dataset():
         for node in tqdm(list(self.core_subgraph.nodes())):
             self.core_subgraph.add_edge(node, self.pseudo_leaf_node)
         for node in list(self.full_graph.nodes()):
+            logging.info(node)
+            logging.info(self.pseudo_leaf_node)
             self.full_graph.add_edge(node, self.pseudo_leaf_node)
         # leaf_nodes_training = self._intersection(train_node_ids,graph_dataset.leaf)
         # self.idx_corpus_id, self.corpus = self._construct_corpus(leaf_nodes_training)
