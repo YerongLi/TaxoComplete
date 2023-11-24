@@ -47,9 +47,10 @@ class Dataset():
         # leaf_nodes_training = self._intersection(train_node_ids,graph_dataset.leaf)
         # self.idx_corpus_id, self.corpus = self._construct_corpus(leaf_nodes_training)
 
-        random_node = random.choice(full_graph.nodes())
+        random_node = random.choice(self.full_graph.nodes())
         logging.info(random_node)
         logging.info(type(random_node))
+        logginf.info(len(self.full_graph.nodes()))
         
         self.train_node_list = train_node_ids
         self.corpus, self.corpusId2nodeId = self._construct_queries(train_node_ids)
