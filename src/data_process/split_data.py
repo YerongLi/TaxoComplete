@@ -15,7 +15,7 @@ class Dataset():
         helpers.set_seed(seed)
         full_graph = graph_dataset.taxonomy
         logging.info(type(graph_dataset.taxonomy))
-        random_node = choice(full_graph.nodes())
+        random_node = random.choice(full_graph.nodes())
         logging.info(random_node)
         logging.info(type(random_node))
         train_node_ids = graph_dataset.train_node_ids
