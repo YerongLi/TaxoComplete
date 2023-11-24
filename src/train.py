@@ -5,11 +5,19 @@ import torch
 from torch.utils.data import DataLoader
 import data_process.split_data as st
 import data_process.data_loader as dl
+import logging
 from model.sbert import SentenceTransformer, losses
 from model.sbert.evaluation import EmbeddingSimilarityEvaluator
 import compute_metrics.metric as ms
 from parse_config import ConfigParser
 from model.utils import PPRPowerIteration
+import os
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-4s - %(filename)-6s:%(lineno)d - %(message)s',
+    level=logging.INFO,
+    filename='./output.log',
+    datefmt='%m-%d %H:%M:%S')
+logging.info(f'Logger start: {os.uname()[1]}')
 
 torch.manual_seed(0)
 args = argparse.ArgumentParser(description='Training taxonomy expansion model')

@@ -47,6 +47,7 @@ class Dataset():
         self.trainInputLevel, self.trainlevel2nodes = self._get_level(self.core_subgraph)
         self.sample_nodes_level = self.sample_matrix_level(self.trainlevel2nodes)
         size_training = len(train_node_ids)
+        logging.info(size_training)
         train_node_ids.remove(self.root)
         sampled_nodes = random.sample(train_node_ids, int(size_training/2))
         self.train_node2pos, self.train_node2parents = self._find_insert_posistion(sampled_nodes, self.core_subgraph)
