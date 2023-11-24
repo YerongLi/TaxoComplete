@@ -38,7 +38,8 @@ alpha = config['alpha']
 
 taxonomy = dl.TaxoDataset(name,data_path,raw=True,partition_pattern=partition_pattern,seed=seed)
 data_prep = st.Dataset(taxonomy,sampling_method,neg_number,seed)
-logging.info('data_prep.definitions')
+# logging.info('data_prep.definitions')
+logging.info(len(data_prep.definitions))
 logging.info(data_prep.definitions)
 model_name = config['model_name']
 
