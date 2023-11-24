@@ -62,8 +62,12 @@ logging.info('core_graph')
 
 logging.info(type(core_graph))
 logging.info(core_graph)
-for node in core_graph.nodes(data=True):
-    logging.info(node)
+for edge in core_graph.edges():
+    source, target = edge
+    logging.info(f"Source: {source}, Target: {target}")
+
+# for node in core_graph.nodes(data=True):
+#     logging.info(node)
 # Define your train dataset, the dataloader and the train loss
 train_dataloader = DataLoader(data_prep.trainInput, shuffle=True, batch_size=batch_size)
 warmup_steps = math.ceil(len(train_dataloader) * epochs * 0.1) #10% of train data for warm-up
