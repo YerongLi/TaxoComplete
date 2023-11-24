@@ -58,8 +58,10 @@ core_graph.remove_node(data_prep.pseudo_leaf_node)
 nodes_core_subgraph = list(core_graph.nodes)
 assert nodes_core_subgraph == nodeIdsCorpus
 propagation = PPRPowerIteration(nx.adjacency_matrix(core_graph), alpha=alpha, niter=10).to(target_device)
+logging.info('core_graph')
 
-
+logging.info(type(core_graph))
+logging.info(core_graph)
 # Define your train dataset, the dataloader and the train loss
 train_dataloader = DataLoader(data_prep.trainInput, shuffle=True, batch_size=batch_size)
 warmup_steps = math.ceil(len(train_dataloader) * epochs * 0.1) #10% of train data for warm-up
