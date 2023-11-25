@@ -89,7 +89,7 @@ logging.info(type(core_graph))
 logging.info(core_graph)
 all_path=[]
 for node, _ in core_graph.nodes(data=True):
-    if node == core_graph.root: continue
+    if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node))
 
