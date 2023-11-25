@@ -12,15 +12,16 @@ import compute_metrics.metric as ms
 from parse_config import ConfigParser
 from model.utils import PPRPowerIteration
 import os
-def print_outgoing_edges(graph, node):
+import pickle
+def print_outgoing_edges(graph, node, depth= ):
     for edge in graph.out_edges(node):
         print(edge)
 
-def find_paths_of_length_2(graph, start_node):
+def find_paths_of_length(graph, start_node, depth=3):
     paths = []
 
     def dfs(current_node, path, length):
-        if length == 2:
+        if length == depth:
             paths.append(path + [current_node])
             return
 
@@ -86,9 +87,17 @@ logging.info('core_graph')
 
 logging.info(type(core_graph))
 logging.info(core_graph)
-for i in range(300):
-    if core_graph.has_node(i):
-        logging.info(find_paths_of_length_2(core_graph,i))
+all_path=[]
+for node, _ in core_graph.nodes(data=True):
+    if core_graph.has_node(node):
+        all_path.extend(find_paths_of_length(core_graph,node))
+
+with open('all_path.pkl', 'wb') as f:
+    pickle.dump(all_path, f)
+
+with open('definitions.pkl', 'wb') as f:
+    pickle.dump(core_graph_definitions, f)
+
 # for edge in core_graph.edges():
 #     source, target = edge
 #     logging.info(f"Source: {source}, Target: {target}")
