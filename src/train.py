@@ -13,7 +13,7 @@ from parse_config import ConfigParser
 from model.utils import PPRPowerIteration
 import os
 import pickle
-def print_outgoing_edges(graph, node, depth= ):
+def print_outgoing_edges(graph, node):
     for edge in graph.out_edges(node):
         print(edge)
 
