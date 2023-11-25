@@ -17,7 +17,7 @@ def print_outgoing_edges(graph, node):
     for edge in graph.out_edges(node):
         print(edge)
 
-def find_paths_of_length(graph, start_node, depth=3):
+def find_paths_of_length(graph, start_node, depth=2):
     paths = []
 
     def dfs(current_node, path, length):
@@ -89,7 +89,7 @@ logging.info(type(core_graph))
 logging.info(core_graph)
 all_path=[]
 for node, _ in core_graph.nodes(data=True):
-    if data_prep.definitions[node]['label'] == ' ': continue 
+    if len(data_prep.definitions[node]['label']) <2: continue 
     if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node))
