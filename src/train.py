@@ -89,11 +89,15 @@ logging.info(type(core_graph))
 logging.info(core_graph)
 all_path=[]
 for node, _ in core_graph.nodes(data=True):
-    if len(data_prep.definitions[node]['label']) <2: continue 
+    # if len(data_prep.definitions[node]['label']) <2: continue 
     if node == data_prep.root: continue
     if core_graph.has_node(node):
-        all_path.extend(find_paths_of_length(core_graph,node))
-
+        all_path.extend(find_paths_of_length(core_graph,node, 2))
+for node, _ in core_graph.nodes(data=True):
+    # if len(data_prep.definitions[node]['label']) <2: continue 
+    if node == data_prep.root: continue
+    if core_graph.has_node(node):
+        all_path.extend(find_paths_of_length(core_graph,node, 3))
 with open('all_path.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
