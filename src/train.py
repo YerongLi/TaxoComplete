@@ -96,7 +96,7 @@ with open('all_path.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
 with open('definitions.pkl', 'wb') as f:
-    pickle.dump(core_graph_definitions, f)
+    pickle.dump(core_graph.definitions, f)
 
 # for edge in core_graph.edges():
 #     source, target = edge
