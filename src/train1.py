@@ -13,7 +13,11 @@ from parse_config import ConfigParser
 from model.utils import PPRPowerIteration
 import os
 import pickle
-
+def has_all_edge_weights(graph):
+    for edge in graph.edges():
+        if 'weight' not in graph.get_edge_data(edge[0], edge[1]):
+            return False
+    return True
 def find_paths_of_length(graph, start_node, depth=2):
     paths = []
 
@@ -59,7 +63,7 @@ data_prep = st.Dataset(taxonomy,sampling_method,neg_number,seed)
 # logging.info('data_prep.definitions')
 # logging.info(data_prep.definitions)
 # 11-24 15:19:51 INFO - train.py:42 - {0: {'label': 'entity||entity.n.01', 'summary': 'that which is perceived or known or inferred to have its own distinct existence (living or nonliving)'}, 1: {'label': 'physical_entity||physical_entity.n.01', 'summary': 'an entity that has physical existence'}, 2: {'label': 'abstraction||abstraction.n.06', 'summary': 'a general concept formed by extracting common features from specific examples'}, 3: {'label': 'thing||thing.n.12', 'summary': 'a separate and self-contained entity'}, 4: {'label': 'object||object.n.01', 'summary': 'a tangible and visible entity; an entity that can cast a shadow'}, 5: {'label': 'whole||whole.n.02', 'summary': 'an assemblage of parts that is regarded as a single entity'}, 6: {'label': 'congener||congener.n.03', 'summary': 'a whole (a thing or person) of the same kind or category as another'}, 7: {'label': 'living_thing||living_thing.n.01', 'summary': 'a living (or once living) entity'}, 8: {'label': 'organism||organism.n.01', 'summary': 'a living thing that has (or can develop) the ability to act or function independently'}, 9: {'label': 'benthos||benthos.n.02', 'summary': 'organisms (plants and animals) that live at or near the bottom of a sea'}, 10: {'label': 'dwarf||dwarf.n.03', 'summary': 'a plant or animal that is atypically small'}, 11: {'label': 'heterotroph||heterotroph.n.01', 'summary': 'an organism that depends on complex organic substances for nutrition'}, 12: {'label': 'parent||parent.n.02', 'summary': 'an organism (plant or animal) from which younger ones are obtained'}, 13: {'label': 'life||life.n.10', 'summary': 'living things collectively'}, 14: {'label': 'biont||biont.n.01', 'summary': 'a discrete unit of living matter'}, 15: {'label': 'cell||cell.n.02', 'summary': '(biology) the basic structural and functional unit of all organisms; they may exist as independent units of life (as in monads) or may form colonies or tissues as in higher plants and animals'}, 16: {'label': 'causal_agent||causal_agent.n.01', 'summary': 'any entity that produces an effect or is responsible for events or results'}, 17: {'label': 'person||person.n.01', 'summary': 'a human being'}, 18: {'label': 'animal||animal.n.01', 'summary': 'a living organism characterized by voluntary movement'}, 19: {'label': 'plant||plant.n.02', 'summary': '(botany) a living organism lacking the power of locomotion'}, 20: {'
-
+logging.info(has_all_edge_weights(data_prep.core_subgraph))
 model_name = config['model_name']
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -76,6 +80,8 @@ g.manual_seed(0)
 
 nodeIdsCorpus =[data_prep.corpusId2nodeId[idx] for idx in data_prep.corpusId2nodeId]
 core_graph = data_prep.core_subgraph.copy()
+logging.info(has_all_edge_weights(core_graph))
+
 core_graph.remove_node(data_prep.pseudo_leaf_node)
 nodes_core_subgraph = list(core_graph.nodes)
 assert nodes_core_subgraph == nodeIdsCorpus
