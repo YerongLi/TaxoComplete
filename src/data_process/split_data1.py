@@ -20,7 +20,7 @@ class Dataset():
         if len(roots) > 1:
             self.root = max(full_graph.nodes) + 1
             for r in roots:
-                full_graph.add_weighted_edges_from((self.root, r, 1))
+                full_graph.add_weighted_edges_from([(self.root, r, 1)])
             train_node_ids.append(self.root)
         else:
             self.root = roots[0]
@@ -32,18 +32,18 @@ class Dataset():
         try:
             cycles = nx.find_cycle(self.full_graph, orientation="original")
             for tupl in cycles:
-                self.full_graph.add_weighted_edges_from((self.root, tupl[0],1))
+                self.full_graph.add_weighted_edges_from([(self.root, tupl[0],1)])
         except:
             print("no cycles found")
         self.core_subgraph = self._get_holdout_subgraph(train_node_ids)
         self.pseudo_leaf_node = max(full_graph.nodes) + 1
         self.definitions[self.pseudo_leaf_node] = {"label":" ","summary":" "}
         for node in tqdm(list(self.core_subgraph.nodes())):
-            self.core_subgraph.add_weighted_edges_from((node, self.pseudo_leaf_node, 1))
+            self.core_subgraph.add_weighted_edges_from([(node, self.pseudo_leaf_node, 1)])
         for node in list(self.full_graph.nodes()):
             # logging.info(node)
             # logging.info(self.pseudo_leaf_node)
-            self.full_graph.add_weighted_edges_from((node, self.pseudo_leaf_node, 1))
+            self.full_graph.add_weighted_edges_from([(node, self.pseudo_leaf_node, 1)])
         # leaf_nodes_training = self._intersection(train_node_ids,graph_dataset.leaf)
         # self.idx_corpus_id, self.corpus = self._construct_corpus(leaf_nodes_training)
 
@@ -371,7 +371,7 @@ class Dataset():
                     cs += list(self.full_graph.successors(c))
             for p in parents:
                 for c in children:
-                    subgraph.add_weighted_edges_from((p, c, 1))
+                    subgraph.add_weighted_edges_from([(p, c, 1)])
         # remove jump edges
         node2descendants = {n: set(subgraph.successors(n))  for n in subgraph.nodes}
         for node in subgraph.nodes():
