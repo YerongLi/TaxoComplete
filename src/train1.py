@@ -115,9 +115,9 @@ for edge in core_graph.edges():
 #     logging.info(node)
 # Define your train dataset, the dataloader and the train loss
 train_dataloader = DataLoader(data_prep.trainInput, shuffle=True, batch_size=batch_size)
-warmup_steps = math.ceil(len(train_dataloader) * epochs * 0.1) #10% of train data for warm-up
-train_loss = losses.CosineSimilarityLoss(model)
-evaluator = EmbeddingSimilarityEvaluator.from_input_examples(data_prep.val_examples, name='sts-dev')
+# warmup_steps = math.ceil(len(train_dataloader) * epochs * 0.1) #10% of train data for warm-up
+# train_loss = losses.CosineSimilarityLoss(model)
+# evaluator = EmbeddingSimilarityEvaluator.from_input_examples(data_prep.val_examples, name='sts-dev')
 # Tune the model
 # model.fit(train_objectives=[(train_dataloader, train_loss)], evaluator=evaluator, evaluation_steps=1000, epochs=epochs,
 #           warmup_steps=warmup_steps, output_path=str(config.save_dir),save_best_model=True)
