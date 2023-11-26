@@ -106,7 +106,7 @@ with open('edges.pkl', 'wb') as f:
 for edge in core_graph.edges():
     source, target, label= edge
     logging.info(f"Source: {source}, Target: {target}, Label : {label}")
-core_graph.definitions
+# core_graph.definitions
 
 
 # for node in core_graph.nodes(data=True):
