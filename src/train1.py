@@ -105,8 +105,8 @@ with open('edges.pkl', 'wb') as f:
     pickle.dump(core_graph.edges(), f)
 for edge in core_graph.edges():
     source, target= edge
-    logging.info(definitions[source])
-    logging.info(definitions[target])
+    logging.info(data_prep.definitions[source])
+    logging.info(data_prep.definitions[target])
     logging.info(f"Source: {source}, Target: {target}, Label : {core_graph.get_edge_data(source, target)['weight']}")
 # core_graph.definitions
 
