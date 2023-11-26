@@ -91,7 +91,7 @@ class TaxoDataset(object):
         self.taxonomy.add_weighted_edges_from(tax_pairs)
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
         self.leaf = [node for node in self.taxonomy.nodes() if self.taxonomy.out_degree(node) == 0]
-        logging.info(list(taxonomy.edges())[0])
+        logging.info(list(self.taxonomy.edges())[0])
         if self.partition_pattern=="leaf":
             random.shuffle(self.leaf)
             validation_size = min(int(len(self.leaf) * 0.1), MAX_VALIDATION_SIZE)
