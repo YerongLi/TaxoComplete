@@ -98,6 +98,8 @@ class Dataset():
         holdout_subgraph = self._get_holdout_subgraph(graph_dataset.train_node_ids + graph_dataset.test_node_ids)
         self.test_node2pos, self.test_node2parents  = self._find_insert_posistion(graph_dataset.test_node_ids, holdout_subgraph)
         self.test_examples = self._construct_validation(self.test_node2pos,self.allLevel)
+        logging.info(has_all_edge_weights(self.full_graph))
+        
         # self.testInputExampleLevel = self._construct_training_levels(self.test_node2pos, self.sample_nodes_level,
         #                                                               self.allLevel)
 
