@@ -92,7 +92,7 @@ class TaxoDataset(object):
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
         self.leaf = [node for node in self.taxonomy.nodes() if self.taxonomy.out_degree(node) == 0]
         logging.info(len(tax_pairs))
-        logging.info(dir(taxonomy))
+        # logging.info(dir(taxonomy))
         logging.info(self.taxonomy.get_edge_data(list(self.taxonomy.edges())[0]))
         if self.partition_pattern=="leaf":
             random.shuffle(self.leaf)
