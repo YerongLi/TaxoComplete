@@ -3,8 +3,8 @@ import math
 import argparse
 import torch
 from torch.utils.data import DataLoader
-import data_process.split_data as st
-import data_process.data_loader as dl
+import data_process.split_data1 as st
+import data_process.data_loader1 as dl
 import logging
 from model.sbert import SentenceTransformer, losses
 from model.sbert.evaluation import EmbeddingSimilarityEvaluator
@@ -53,7 +53,7 @@ batch_size = config['batch_size']
 epochs = config['epochs']
 alpha = config['alpha']
 
-taxonomy = dl.TaxoDataset(name,data_path,raw=True,partition_pattern=partition_pattern,seed=seed)
+taxonomy = dl.TaxoDataset1(name,data_path,raw=True,partition_pattern=partition_pattern,seed=seed)
 data_prep = st.Dataset(taxonomy,sampling_method,neg_number,seed)
 # logging.info('data_prep.definitions')
 # logging.info('data_prep.definitions')
@@ -117,20 +117,20 @@ warmup_steps = math.ceil(len(train_dataloader) * epochs * 0.1) #10% of train dat
 train_loss = losses.CosineSimilarityLoss(model)
 evaluator = EmbeddingSimilarityEvaluator.from_input_examples(data_prep.val_examples, name='sts-dev')
 # Tune the model
-model.fit(train_objectives=[(train_dataloader, train_loss)], evaluator=evaluator, evaluation_steps=1000, epochs=epochs,
-          warmup_steps=warmup_steps, output_path=str(config.save_dir),save_best_model=True)
+# model.fit(train_objectives=[(train_dataloader, train_loss)], evaluator=evaluator, evaluation_steps=1000, epochs=epochs,
+#           warmup_steps=warmup_steps, output_path=str(config.save_dir),save_best_model=True)
 
-model = SentenceTransformer.SentenceTransformer(str(config.save_dir))
-corpus_embeddings = model.encode(data_prep.corpus, convert_to_tensor=True, show_progress_bar=True)
-preds = propagation(corpus_embeddings,torch.tensor(range(len(nodeIdsCorpus)),device=target_device))
+# model = SentenceTransformer.SentenceTransformer(str(config.save_dir))
+# corpus_embeddings = model.encode(data_prep.corpus, convert_to_tensor=True, show_progress_bar=True)
+# preds = propagation(corpus_embeddings,torch.tensor(range(len(nodeIdsCorpus)),device=target_device))
 
-all_targets_val, all_predictions_val, all_scores_val, edges_predictions_val, all_edges_scores_val = ms.compute_prediction(data_prep.core_subgraph.edges,data_prep.pseudo_leaf_node, data_prep.valid_queries,corpus_embeddings,model,data_prep.valid_node_list,data_prep.valid_node2pos,data_prep.corpusId2nodeId)
-ms.save_results(str(config.save_dir)+'/',all_targets_val, edges_predictions_val,"eval_val")
-all_targets_test, all_predictions, all_scores_test, edges_predictions_test, all_edges_scores_test  = ms.compute_prediction(data_prep.core_subgraph.edges, data_prep.pseudo_leaf_node, data_prep.test_queries,corpus_embeddings,model,data_prep.test_node_list,data_prep.test_node2pos,data_prep.corpusId2nodeId)
-ms.save_results(str(config.save_dir)+'/',all_targets_test, edges_predictions_test,"eval_test")
+# all_targets_val, all_predictions_val, all_scores_val, edges_predictions_val, all_edges_scores_val = ms.compute_prediction(data_prep.core_subgraph.edges,data_prep.pseudo_leaf_node, data_prep.valid_queries,corpus_embeddings,model,data_prep.valid_node_list,data_prep.valid_node2pos,data_prep.corpusId2nodeId)
+# ms.save_results(str(config.save_dir)+'/',all_targets_val, edges_predictions_val,"eval_val")
+# all_targets_test, all_predictions, all_scores_test, edges_predictions_test, all_edges_scores_test  = ms.compute_prediction(data_prep.core_subgraph.edges, data_prep.pseudo_leaf_node, data_prep.test_queries,corpus_embeddings,model,data_prep.test_node_list,data_prep.test_node2pos,data_prep.corpusId2nodeId)
+# ms.save_results(str(config.save_dir)+'/',all_targets_test, edges_predictions_test,"eval_test")
 
 
-all_targets_val_ppr, all_predictions_val_ppr, all_scores_val_ppr, edges_predictions_val_ppr, all_edges_scores_val_ppr = ms.compute_prediction(data_prep.core_subgraph.edges,data_prep.pseudo_leaf_node, data_prep.valid_queries,preds,model,data_prep.valid_node_list,data_prep.valid_node2pos,data_prep.corpusId2nodeId)
-ms.save_results(str(config.save_dir)+'/',all_targets_val_ppr, edges_predictions_val_ppr,"eval_val_ppr")
-all_targets_test_ppr, all_predictions_ppr, all_scores_test_ppr, edges_predictions_test_ppr, all_edges_scores_test_ppr  = ms.compute_prediction(data_prep.core_subgraph.edges, data_prep.pseudo_leaf_node, data_prep.test_queries,preds,model,data_prep.test_node_list,data_prep.test_node2pos,data_prep.corpusId2nodeId)
-ms.save_results(str(config.save_dir)+'/',all_targets_test_ppr, edges_predictions_test_ppr,"eval_test_ppr")
+# all_targets_val_ppr, all_predictions_val_ppr, all_scores_val_ppr, edges_predictions_val_ppr, all_edges_scores_val_ppr = ms.compute_prediction(data_prep.core_subgraph.edges,data_prep.pseudo_leaf_node, data_prep.valid_queries,preds,model,data_prep.valid_node_list,data_prep.valid_node2pos,data_prep.corpusId2nodeId)
+# ms.save_results(str(config.save_dir)+'/',all_targets_val_ppr, edges_predictions_val_ppr,"eval_val_ppr")
+# all_targets_test_ppr, all_predictions_ppr, all_scores_test_ppr, edges_predictions_test_ppr, all_edges_scores_test_ppr  = ms.compute_prediction(data_prep.core_subgraph.edges, data_prep.pseudo_leaf_node, data_prep.test_queries,preds,model,data_prep.test_node_list,data_prep.test_node2pos,data_prep.corpusId2nodeId)
+# ms.save_results(str(config.save_dir)+'/',all_targets_test_ppr, edges_predictions_test_ppr,"eval_test_ppr")
