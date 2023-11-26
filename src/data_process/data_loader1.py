@@ -87,7 +87,8 @@ class TaxoDataset(object):
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
         term2def.set_index('label')
         self.term2def = term2def.to_dict(orient='index')
-        self.taxonomy = nx.DiGraph(tax_pairs)
+        self.taxonomy = nx.DiGraph()
+        self.taxonomy.add_weighted_edges_from(tax_pairs)
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
         self.leaf = [node for node in self.taxonomy.nodes() if self.taxonomy.out_degree(node) == 0]
         if self.partition_pattern=="leaf":
