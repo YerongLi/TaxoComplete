@@ -43,6 +43,8 @@ class Dataset():
         logging.info(has_all_edge_weights(self.full_graph))
 
         self.core_subgraph = self._get_holdout_subgraph(train_node_ids)
+        logging.info(has_all_edge_weights(self.core_subgraph))
+        
         self.pseudo_leaf_node = max(full_graph.nodes) + 1
         self.definitions[self.pseudo_leaf_node] = {"label":" ","summary":" "}
         for node in tqdm(list(self.core_subgraph.nodes())):

@@ -19,7 +19,11 @@ class Taxonx(nx.DiGraph):
         self.root = [node for node in self.nodes() if self.in_degree(node) == 0]
         self.leaf_nodes = [node for node in self.nodes() if self.out_degree(node) == 0]
 
-
+def has_all_edge_weights(graph):
+    for edge in graph.edges():
+        if 'weight' not in graph.get_edge_data(edge[0], edge[1]):
+            return False
+    return True
 
 class TaxoDataset(object):
     def __init__(self, name, dir_path, raw=True, partition_pattern='leaf', seed = 47):
@@ -89,6 +93,7 @@ class TaxoDataset(object):
         self.term2def = term2def.to_dict(orient='index')
         self.taxonomy = nx.DiGraph()
         self.taxonomy.add_weighted_edges_from(tax_pairs)
+        logging.info(has_all_edge_weights(self.taxonomy))
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
         self.leaf = [node for node in self.taxonomy.nodes() if self.taxonomy.out_degree(node) == 0]
         logging.info(len(tax_pairs))
