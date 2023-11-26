@@ -9,7 +9,11 @@ import random
 import pdb
 from tqdm import tqdm
 mp.dps = 25; mp.pretty = True
-
+def has_all_edge_weights(graph):
+    for edge in graph.edges():
+        if 'weight' not in graph.get_edge_data(edge[0], edge[1]):
+            return False
+    return True
 class Dataset():
     def __init__(self, graph_dataset,sampling_method,neg_number,seed):
         helpers.set_seed(seed)
@@ -25,16 +29,19 @@ class Dataset():
         else:
             self.root = roots[0]
 
-
         self.definitions = graph_dataset.term2def
         self.definitions[self.root] = {"label":" ","summary":" "}
         self.full_graph = full_graph
+        logging.info(has_all_edge_weights(self.full_graph))
+
         try:
             cycles = nx.find_cycle(self.full_graph, orientation="original")
             for tupl in cycles:
                 self.full_graph.add_weighted_edges_from([(self.root, tupl[0],1)])
         except:
             print("no cycles found")
+        logging.info(has_all_edge_weights(self.full_graph))
+
         self.core_subgraph = self._get_holdout_subgraph(train_node_ids)
         self.pseudo_leaf_node = max(full_graph.nodes) + 1
         self.definitions[self.pseudo_leaf_node] = {"label":" ","summary":" "}
@@ -44,18 +51,20 @@ class Dataset():
             # logging.info(node)
             # logging.info(self.pseudo_leaf_node)
             self.full_graph.add_weighted_edges_from([(node, self.pseudo_leaf_node, 1)])
+        logging.info(has_all_edge_weights(self.full_graph))
+
         # leaf_nodes_training = self._intersection(train_node_ids,graph_dataset.leaf)
         # self.idx_corpus_id, self.corpus = self._construct_corpus(leaf_nodes_training)
 
         random_node = random.choice(list(self.full_graph.nodes(data=True)))
-        logging.info(random_node)
+        # logging.info(random_node)
         # random_node_attributes = self.full_graph.get_node_attributes(random_node)
         # logging.info(random_node_attributes)
         # for node in list(self.full_graph.nodes(data=True)):
             # logging.info(node)
             # {} data
         # logging.info(list(self.full_graph.nodes(data=True))[200])
-        logging.info(len(list(self.full_graph.nodes())))
+        # logging.info(len(list(self.full_graph.nodes())))
         
         self.train_node_list = train_node_ids
         self.corpus, self.corpusId2nodeId = self._construct_queries(train_node_ids)
