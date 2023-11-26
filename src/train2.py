@@ -109,10 +109,8 @@ for edge in core_graph.edges():
     logging.info(data_prep.definitions[target])
     logging.info(f"Source: {source}, Target: {target}, Label : {core_graph.get_edge_data(source, target)}")
 # core_graph.definitions
-with open('data_prep.pkl', 'wb') as f:
-    pickle.dump(data_prep, f)
-with open('core_graph.pkl', 'wb') as f:
-    pickle.dump(core_graph, f)
+
+
 # for node in core_graph.nodes(data=True):
 #     logging.info(node)
 # Define your train dataset, the dataloader and the train loss
