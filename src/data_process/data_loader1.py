@@ -8,6 +8,7 @@ import networkx as nx
 import data_process.helpers as helpers
 import pdb
 import datetime
+import logging
 MAX_TEST_SIZE = 1000
 MAX_VALIDATION_SIZE = 1000
 date_time = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
@@ -76,9 +77,11 @@ class TaxoDataset(object):
                 line = line.strip()
                 if line:
                     segs = line.split("\t")
-                    assert len(segs) == 2, f"Wrong number of segmentations {line}"
+                    assert len(segs) == 3, f"Wrong number of segmentations {line}"
                     parent_taxon = tx_id2incrmt[segs[0]]
                     child_taxon = tx_id2incrmt[segs[1]]
+                    label = int(segs[2])
+                    logging.info(segs[2])
                     tax_pairs.append((parent_taxon,child_taxon))
         term2def = pd.read_csv(def_file_name)
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
