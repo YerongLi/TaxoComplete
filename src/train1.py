@@ -103,10 +103,10 @@ with open('definitions.pkl', 'wb') as f:
 
 with open('edges.pkl', 'wb') as f:
     pickle.dump(core_graph.edges(), f)
-# for edge in core_graph.edges():
-#     source, target = edge
-#     logging.info(f"Source: {source}, Target: {target}")
-# core_graph.definitions
+for edge in core_graph.edges():
+    source, target, label= edge
+    logging.info(f"Source: {source}, Target: {target}, Label : {label}")
+core_graph.definitions
 
 
 # for node in core_graph.nodes(data=True):
