@@ -81,7 +81,7 @@ class TaxoDataset(object):
                     parent_taxon = tx_id2incrmt[segs[0]]
                     child_taxon = tx_id2incrmt[segs[1]]
                     label = int(segs[2])
-                    logging.info(segs[2])
+                    # logging.info(segs[2])
                     tax_pairs.append((parent_taxon,child_taxon, label))
         term2def = pd.read_csv(def_file_name)
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
@@ -91,6 +91,7 @@ class TaxoDataset(object):
         self.taxonomy.add_weighted_edges_from(tax_pairs)
         self.root = [node for node in self.taxonomy.nodes() if self.taxonomy.in_degree(node) == 0]
         self.leaf = [node for node in self.taxonomy.nodes() if self.taxonomy.out_degree(node) == 0]
+        logging.info(len(tax_pairs))
         logging.info(list(self.taxonomy.edges())[0])
         if self.partition_pattern=="leaf":
             random.shuffle(self.leaf)
