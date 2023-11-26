@@ -107,7 +107,7 @@ for edge in core_graph.edges():
     source, target= edge
     logging.info(data_prep.definitions[source])
     logging.info(data_prep.definitions[target])
-    logging.info(f"Source: {source}, Target: {target}, Label : {core_graph.get_edge_data(source, target)['weight']}")
+    logging.info(f"Source: {source}, Target: {target}, Label : {core_graph.get_edge_data(source, target)}")
 # core_graph.definitions
 
 
