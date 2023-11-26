@@ -82,7 +82,7 @@ class TaxoDataset(object):
                     child_taxon = tx_id2incrmt[segs[1]]
                     label = int(segs[2])
                     logging.info(segs[2])
-                    tax_pairs.append((parent_taxon,child_taxon))
+                    tax_pairs.append((parent_taxon,child_taxon, label))
         term2def = pd.read_csv(def_file_name)
         term2def = term2def.replace({"label": tx_id2incrmt})[['label','summary']]
         term2def.set_index('label')
