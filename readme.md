@@ -1,3 +1,11 @@
+# ##
+
+train.py is for generating core_graph.pkl
+
+Run perturbate.py
+train1.py is for generating core_graph{TOTAL}.pkl
+
+
 This is the repositotry of TaxoComplete: Self-Supervised Taxonomy Completion Leveraging Position-Enhanced Semantic Matching
 
 ### Installation

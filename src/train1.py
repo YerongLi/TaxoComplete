@@ -13,6 +13,7 @@ from parse_config import ConfigParser
 from model.utils import PPRPowerIteration
 import os
 import pickle
+
 def has_all_edge_weights(graph):
     for edge in graph.edges():
         if 'weight' not in graph.get_edge_data(edge[0], edge[1]):
@@ -88,7 +89,7 @@ assert nodes_core_subgraph == nodeIdsCorpus
 propagation = PPRPowerIteration(nx.adjacency_matrix(core_graph), alpha=alpha, niter=10).to(target_device)
 logging.info('core_graph')
 
-logging.info(type(core_graph))
+# logging.info(type(core_graph))
 logging.info(core_graph)
 all_path=[]
 for node, _ in core_graph.nodes(data=True):
@@ -101,13 +102,13 @@ for node, _ in core_graph.nodes(data=True):
     if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node, 3))
-with open('all_path.pkl', 'wb') as f:
+with open(f'all_path.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
 with open('definitions.pkl', 'wb') as f:
     pickle.dump(data_prep.definitions, f)
 
-with open('edges.pkl', 'wb') as f:
+with open(f'edges.pkl', 'wb') as f:
     pickle.dump(core_graph.edges(), f)
 for edge in core_graph.edges():
     source, target= edge
@@ -115,9 +116,9 @@ for edge in core_graph.edges():
     logging.info(data_prep.definitions[target])
     logging.info(f"Source: {source}, Target: {target}, Label : {core_graph.get_edge_data(source, target)}")
 # core_graph.definitions
-with open('data_prep.pkl', 'wb') as f:
-    pickle.dump(data_prep, f)
-with open('core_graph.pkl', 'wb') as f:
+# with open('data_prep.pkl', 'wb') as f:
+    # pickle.dump(data_prep, f)
+with open(f'core_graph.pkl', 'wb') as f:
     pickle.dump(core_graph, f)
 # for node in core_graph.nodes(data=True):
 #     logging.info(node)

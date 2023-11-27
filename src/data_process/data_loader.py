@@ -77,6 +77,7 @@ class TaxoDataset(object):
                 if line:
                     segs = line.split("\t")
                     assert len(segs) == 2, f"Wrong number of segmentations {line}"
+                    if segs[0] not in tx_id2incrmt or segs[1] not in tx_id2incrmt: continue
                     parent_taxon = tx_id2incrmt[segs[0]]
                     child_taxon = tx_id2incrmt[segs[1]]
                     tax_pairs.append((parent_taxon,child_taxon))
