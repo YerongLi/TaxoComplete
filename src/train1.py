@@ -46,10 +46,11 @@ args = argparse.ArgumentParser(description='Training taxonomy expansion model')
 args.add_argument('-c', '--config', default=None, type=str, help='config file path (default: None)')
 config = ConfigParser(args)
 args = args.parse_args()
-TOTAL = 300
+
 saving_path = config['saving_path']
 name = config['name']
 data_path = config['data_path']
+TOTAL = name.split('_')[-1]
 sampling_method = config['sampling']
 neg_number = config['neg_number']
 partition_pattern = config['partition_pattern']
