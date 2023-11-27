@@ -46,7 +46,7 @@ args = argparse.ArgumentParser(description='Training taxonomy expansion model')
 args.add_argument('-c', '--config', default=None, type=str, help='config file path (default: None)')
 config = ConfigParser(args)
 args = args.parse_args()
-
+TOTAL = 300
 saving_path = config['saving_path']
 name = config['name']
 data_path = config['data_path']
@@ -102,14 +102,12 @@ for node, _ in core_graph.nodes(data=True):
     if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node, 3))
-with open(f'all_path.pkl', 'wb') as f:
+with open(f'all_path_{TOTAL}.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
 with open('definitions.pkl', 'wb') as f:
     pickle.dump(data_prep.definitions, f)
 
-with open(f'edges.pkl', 'wb') as f:
-    pickle.dump(core_graph.edges(), f)
 for edge in core_graph.edges():
     source, target= edge
     logging.info(data_prep.definitions[source])
@@ -118,7 +116,7 @@ for edge in core_graph.edges():
 # core_graph.definitions
 # with open('data_prep.pkl', 'wb') as f:
     # pickle.dump(data_prep, f)
-with open(f'core_graph.pkl', 'wb') as f:
+with open(f'core_graph_{TOTAL}.pkl', 'wb') as f:
     pickle.dump(core_graph, f)
 # for node in core_graph.nodes(data=True):
 #     logging.info(node)
