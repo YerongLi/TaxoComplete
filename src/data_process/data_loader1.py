@@ -9,8 +9,10 @@ import data_process.helpers as helpers
 import pdb
 import datetime
 import logging
-MAX_TEST_SIZE = 1000
-MAX_VALIDATION_SIZE = 1000
+# MAX_TEST_SIZE = 1000
+# MAX_VALIDATION_SIZE = 1000
+MAX_TEST_SIZE = 0
+MAX_VALIDATION_SIZE = 0
 date_time = datetime.datetime.now().strftime("%d-%b-%Y (%H:%M:%S.%f)")
 
 class Taxonx(nx.DiGraph):
@@ -64,7 +66,7 @@ class TaxoDataset(object):
         # load nodes
         with open(node_file_name, "r") as fin:
             incr = 0
-            for line in fin:
+            for line in tqdm.tqdm(fin):
                 line = line.strip()
                 if line:
                     segs = line.split("\t")
@@ -77,7 +79,7 @@ class TaxoDataset(object):
         # load edges
         tax_pairs = []
         with open(edge_file_name, "r") as fin:
-            for line in fin:
+            for line in tqdm.tqdm(fin):
                 line = line.strip()
                 if line:
                     segs = line.split("\t")
