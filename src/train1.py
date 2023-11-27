@@ -14,6 +14,9 @@ from model.utils import PPRPowerIteration
 import os
 import pickle
 
+# Add the TOTAL argument as a positional argument
+
+
 def has_all_edge_weights(graph):
     for edge in graph.edges():
         if 'weight' not in graph.get_edge_data(edge[0], edge[1]):
@@ -51,6 +54,11 @@ saving_path = config['saving_path']
 name = config['name']
 data_path = config['data_path']
 TOTAL = name.split('_')[-1]
+print(TOTAL)
+print(TOTAL)
+print(TOTAL)
+print(TOTAL)
+print(TOTAL)
 sampling_method = config['sampling']
 neg_number = config['neg_number']
 partition_pattern = config['partition_pattern']
