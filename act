@@ -1,1 +1,1 @@
-act taxocomplete
+conda activate /scratch/yerong/.conda/envs/taxocomplete
