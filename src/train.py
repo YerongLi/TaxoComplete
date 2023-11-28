@@ -95,13 +95,13 @@ for node, _ in core_graph.nodes(data=True):
     if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node, 3))
-with open('all_path.pkl', 'wb') as f:
+with open(f'{data_path}/all_path.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
-with open('definitions.pkl', 'wb') as f:
+with open(f'{data_path}/definitions.pkl', 'wb') as f:
     pickle.dump(data_prep.definitions, f)
 
-with open('edges.pkl', 'wb') as f:
+with open(f'{data_path}/edges.pkl', 'wb') as f:
     pickle.dump(core_graph.edges(), f)
 # for edge in core_graph.edges():
 #     source, target = edge
