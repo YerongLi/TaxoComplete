@@ -3,5 +3,5 @@
 
 # python ./src/train1.py --config config_files/semeval_noun1/config_1500.json
 # python ./src/train1.py 700 --config config_files/semeval_noun/config_clst20_s47.json
-python ./src/train1.py 700 --config config_files/cs/config_clst20_s47.json
+python ./src/train1.py --config config_files/cs/config_clst20_s47.json 500
 
