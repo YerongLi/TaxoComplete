@@ -111,10 +111,10 @@ for node, _ in core_graph.nodes(data=True):
     if node == data_prep.root: continue
     if core_graph.has_node(node):
         all_path.extend(find_paths_of_length(core_graph,node, 3))
-with open(f'all_path_{TOTAL}.pkl', 'wb') as f:
+with open(f'{data_path}all_path_{TOTAL}.pkl', 'wb') as f:
     pickle.dump(all_path, f)
 
-with open('definitions.pkl', 'wb') as f:
+with open(f'{data_path}definitions.pkl', 'wb') as f:
     pickle.dump(data_prep.definitions, f)
 
 for edge in core_graph.edges():
@@ -125,7 +125,7 @@ for edge in core_graph.edges():
 # core_graph.definitions
 # with open('data_prep.pkl', 'wb') as f:
     # pickle.dump(data_prep, f)
-with open(f'core_graph_{TOTAL}.pkl', 'wb') as f:
+with open(f'{data_path}core_graph_{TOTAL}.pkl', 'wb') as f:
     pickle.dump(core_graph, f)
 # for node in core_graph.nodes(data=True):
 #     logging.info(node)
