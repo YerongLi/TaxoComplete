@@ -46,14 +46,15 @@ logging.info(f'Logger start: {os.uname()[1]}')
 
 torch.manual_seed(0)
 args = argparse.ArgumentParser(description='Training taxonomy expansion model')
+args.add_argument('TOTAL', default=None, type='700', help='config file path (default: None)')
 args.add_argument('-c', '--config', default=None, type=str, help='config file path (default: None)')
 config = ConfigParser(args)
 args = args.parse_args()
+TOTAL = args.TOTAL
 
 saving_path = config['saving_path']
-name = config['name']
+name = config['name'] + '-pert_{TOTAL}'
 data_path = config['data_path']
-TOTAL = name.split('_')[-1]
 print(TOTAL)
 print(TOTAL)
 print(TOTAL)
