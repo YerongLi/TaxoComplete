@@ -52,7 +52,7 @@ seed = config['seed']
 batch_size = config['batch_size']
 epochs = config['epochs']
 alpha = config['alpha']
-
+print(data_path)
 taxonomy = dl.TaxoDataset(name,data_path,raw=True,partition_pattern=partition_pattern,seed=seed)
 data_prep = st.Dataset(taxonomy,sampling_method,neg_number,seed)
 # logging.info('data_prep.definitions')
