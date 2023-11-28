@@ -46,7 +46,7 @@ logging.info(f'Logger start: {os.uname()[1]}')
 
 torch.manual_seed(0)
 args = argparse.ArgumentParser(description='Training taxonomy expansion model')
-args.add_argument('TOTAL', default=None, type='700', help='config file path (default: None)')
+parser.add_argument("TOTAL", type=int, default=700, nargs="?", help="Number of total items to process")
 args.add_argument('-c', '--config', default=None, type=str, help='config file path (default: None)')
 config = ConfigParser(args)
 args = args.parse_args()
