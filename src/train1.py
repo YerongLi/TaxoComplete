@@ -53,7 +53,7 @@ args = args.parse_args()
 TOTAL = args.TOTAL
 
 saving_path = config['saving_path']
-name = config['name'] + '-pert_{TOTAL}'
+name = config['name'] + f'-pert_{TOTAL}'
 data_path = config['data_path']
 print(TOTAL)
 print(TOTAL)
