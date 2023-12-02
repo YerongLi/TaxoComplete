@@ -1,3 +1,11 @@
+# with open(f'{data_path}/all_path.pkl', 'wb') as f:
+#     pickle.dump(all_path, f)
+
+# with open(f'{data_path}/definitions.pkl', 'wb') as f:
+#     pickle.dump(data_prep.definitions, f)
+
+# with open(f'{data_path}/edges.pkl', 'wb') as f:
+#     pickle.dump(core_graph.edges(), f)
 import networkx as nx
 import math
 import argparse
