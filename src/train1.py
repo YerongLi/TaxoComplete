@@ -1,3 +1,5 @@
+# with open(f'{data_path}core_graph_{TOTAL}.pkl', 'wb') as f:
+#     pickle.dump(core_graph, f)
 import networkx as nx
 import math
 import argparse
