@@ -111,6 +111,7 @@ with open(f'{data_path}/definitions.pkl', 'wb') as f:
 
 with open(f'{data_path}/edges.pkl', 'wb') as f:
     pickle.dump(core_graph.edges(), f)
+exit()
 # for edge in core_graph.edges():
 #     source, target = edge
 #     logging.info(f"Source: {source}, Target: {target}")
