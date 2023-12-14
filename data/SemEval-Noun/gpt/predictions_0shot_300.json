@@ -1,0 +1,6 @@
+{
+    "13249999913498774135726788289671280569706501258623466732946611511866694804988": {
+        "i": "Given two terms in a knowledge graph, your task is to determine whether they have a parent-child relationship and given a very detailed explanation on your decision.\n Question: \naction : something done (usually as opposed to something said)\ncakewalk : an easy accomplishment\n Is action a parent of cakewalk?\n Answer: No\n Explanation: \n",
+        "o": "An action is not a type of cakewalk. An action is not an attribute of a cakewalk."
+    }
+}

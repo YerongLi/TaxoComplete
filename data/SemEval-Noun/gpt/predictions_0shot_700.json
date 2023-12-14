@@ -1,0 +1,14 @@
+{
+    "4020493763513790266942351321952105804454471073044623711124313368065690069544": {
+        "i": "Given two terms in a knowledge graph, your task is to determine whether they have a parent-child relationship and given a very detailed explanation on your decision.\n Question: \nmicroorganism : any organism of microscopic size\nprotist : free-living or colonial organisms with diverse nutritional and reproductive modes\n Is microorganism a parent of protist?\n Answer: Yes\n Explanation: \n",
+        "o": "Protists are microorganisms."
+    },
+    "83670232804162762092552451715261244879982243413945917132600144664951282274437": {
+        "i": "Given two terms in a knowledge graph, your task is to determine whether they have a parent-child relationship and given a very detailed explanation on your decision.\n Question: \nmicroorganism : any organism of microscopic size\nprotist : free-living or colonial organisms with diverse nutritional and reproductive modes\n Is microorganism a parent of protist?\n Answer: Yes\n Explanation: \n",
+        "o": "Microorganisms are organisms that are too small to be seen with the naked eye. Protists are a group of microscopic organisms that are not classified as plants, animals, or fungi. Protists are a subgroup of microorganisms."
+    },
+    "71623596390641847291347283466277286530847422299950802917211341314293355673877": {
+        "i": "Given two terms in a knowledge graph, your task is to determine whether they have a parent-child relationship and given a very detailed explanation on your decision.\n Question: \nmicroorganism : any organism of microscopic size\nprotist : free-living or colonial organisms with diverse nutritional and reproductive modes\n Is microorganism a parent of protist?\n Answer: Yes\n Explanation: \n",
+        "o": "Microorganisms are a group of organisms that are microscopic in size. Protists are a group of organisms that are free-living or colonial and have diverse nutritional and reproductive modes. Microorganisms are a parent of protist because they are a group of organisms that are microscopic in size, and protists are a group of organisms that are free-living or colonial and have diverse nutritional and reproductive modes."
+    }
+}
